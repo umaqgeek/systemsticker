@@ -305,7 +305,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
           
           // report sticker sudah approve
           $lbl7 .= ',"Approve"';
-          $sql72 = 'SELECT * FROM pelekat WHERE pel_status = 2';
+          $sql72 = 'SELECT * FROM pelekat WHERE pel_status = 2 OR pel_status = 3';
           $r72 = mysql_query($sql72) or die(mysql_error());
 	  $t72 = mysql_num_rows($r72);
           $val7 .= ',' . $t72;

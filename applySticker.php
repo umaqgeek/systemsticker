@@ -299,6 +299,19 @@ do {
       <input type="hidden" name="MM_insert" value="form1" />
     </form>
     <p>&nbsp;</p>
+    
+    <?php
+    $pe_id = $row_pe['pe_id'];
+    $sql = sprintf("SELECT * FROM pelekat WHERE pe_id = '%s' AND pel_status = 2 ", $pe_id);
+    $record1 = mysql_query($sql) or die(mysql_error());
+    $total1 = mysql_num_rows($record1);
+    if ($total1 > 0) {
+        $sql = sprintf("UPDATE pelekat SET pel_status = 3 WHERE pe_id = '%s' ", $pe_id);
+        mysql_query($sql) or die(mysql_error());
+        echo "<script>alert('Your application has been approved!');location.href='viewStickers.php';</script>";
+    }
+    ?>
+    
     <!-- InstanceEndEditable --></td>
   </tr>
   <tr>
