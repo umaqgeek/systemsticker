@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_pe" value="name:pe_id;datatype:int,name:pe_username;datatype:string,name:pe_password;datatype:string,name:pe_fullname;datatype:string,name:pe_email;datatype:string,name:pe_idno;datatype:string,name:pe_jawatan;datatype:string,name:pe_alamat;datatype:string,name:pe_tarikhlahir;datatype:datetime,name:pe_telefon;datatype:string,name:pe_regdate;datatype:datetime,name:jp_id;datatype:int,name:ba_id;datatype:int,name:ja_id;datatype:int,name:ut_id;datatype:int,name:pe_status;datatype:int" />
+	<infoitem key="UD_jk" value="name:jk_id;datatype:int,name:jk_desc;datatype:string" />
+	<infoitem key="UD_mk" value="name:mk_id;datatype:int,name:mk_desc;datatype:string" />
+</info>

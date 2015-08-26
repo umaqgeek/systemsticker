@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_jp" value="name:jp_id;datatype:int,name:jp_desc;datatype:string" />
+	<infoitem key="UD_ba" value="name:ba_id;datatype:int,name:ba_desc;datatype:string" />
+	<infoitem key="UD_ja" value="name:ja_id;datatype:int,name:ja_desc;datatype:string" />
+	<infoitem key="UD_ut" value="name:ut_id;datatype:int,name:ut_desc;datatype:string" />
+</info>
