@@ -93,6 +93,12 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
     <script src="assets/js/Chart.js"></script>
       <table width="70%" border="0" cellpadding="5" cellspacing="0">
       	<tr>
+          <td width="50%" align="left" valign="top"><h3>Approve / Not Approve</h3>
+          <p><canvas id="canvas7"></canvas>&nbsp;</p></td>
+          <td width="50%" align="left" valign="top"><h3>Total User Registered</h3>
+          <p><canvas id="canvas8"></canvas>&nbsp;</p></td>
+        </tr>
+        <tr>
           <td>
               <h3>Full Graph</h3>
               <p><canvas id="canvasx"></canvas></p>
@@ -100,21 +106,21 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
           <td>
           	  <table cellpadding="5" cellspacing="0" border="1">
               	<tr>
-                	<th rowspan="2">Kereta</th>
-                    <th>Tak Mohon Sticker</th>
+                	<th rowspan="2">Car</th>
+                    <th>Not Apply Sticker</th>
                     <th width="20px"><div style="background-color:rgba(0,0,220,0.8); width:100; height:10;"></div></th>
                 </tr>
                 <tr>
-                	<th>Mohon Sticker</th>
+                	<th>Apply Sticker</th>
                     <th><div style="background-color:rgba(220,0,0,0.8); width:100; height:10;"></div></th>
                 </tr>
                 <tr>
-                	<th rowspan="2">Motor</th>
-                    <th>Tak Mohon Sticker</th>
+                	<th rowspan="2">Motorcycle</th>
+                    <th>Not Apply Sticker</th>
                     <th width="20px"><div style="background-color:rgba(0,220,0,0.8); width:100; height:10;"></div></th>
                 </tr>
                 <tr>
-                	<th>Mohon Sticker</th>
+                	<th>Apply Sticker</th>
                     <th><div style="background-color:rgba(220,0,220,0.8); width:100; height:10;"></div></th>
                 </tr>
               </table>
@@ -289,6 +295,27 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 			  $val6 .= $t61 . ',';
 		  } while($d6 = mysql_fetch_array($r6));
 	  }
+          
+          // report sticker belum approve
+          $lbl7 = '"Not Approve"';
+          $sql71 = 'SELECT * FROM pelekat WHERE pel_status = 1';
+          $r71 = mysql_query($sql71) or die(mysql_error());
+	  $t71 = mysql_num_rows($r71);
+          $val7 = $t71;
+          
+          // report sticker sudah approve
+          $lbl7 .= ',"Approve"';
+          $sql72 = 'SELECT * FROM pelekat WHERE pel_status = 2';
+          $r72 = mysql_query($sql72) or die(mysql_error());
+	  $t72 = mysql_num_rows($r72);
+          $val7 .= ',' . $t72;
+          
+          // report total user yang da register
+          $sql8 = 'SELECT * FROM pengguna';
+          $r8 = mysql_query($sql8) or die(mysql_error());
+	  $t8 = mysql_num_rows($r8);
+          $lbl8 = '"Total User"';
+          $val8 = $t8;
 	  ?>
       
       <script>
@@ -406,6 +433,30 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 			}
 		]
 	}
+        var barChartData7 = {
+		labels : [<?php echo $lbl7; ?>],
+		datasets : [
+			{
+				fillColor : "rgba(0,0,220,0.5)",
+				strokeColor : "rgba(0,0,220,0.8)",
+				highlightFill: "rgba(0,0,220,0.75)",
+				highlightStroke: "rgba(0,0,220,1)",
+				data : [<?php echo $val7; ?>]
+			}
+		]
+	}
+        var barChartData8 = {
+		labels : [<?php echo $lbl8; ?>],
+		datasets : [
+			{
+				fillColor : "rgba(0,0,220,0.5)",
+				strokeColor : "rgba(0,0,220,0.8)",
+				highlightFill: "rgba(0,0,220,0.75)",
+				highlightStroke: "rgba(0,0,220,1)",
+				data : [<?php echo $val8; ?>]
+			}
+		]
+	}
 	window.onload = function(){
 		var ctxx = document.getElementById("canvasx").getContext("2d");
 		window.myBar = new Chart(ctxx).Bar(barChartDatax, {
@@ -437,6 +488,14 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 		});
 		var ctx6 = document.getElementById("canvas6").getContext("2d");
 		window.myBar = new Chart(ctx6).Bar(barChartData6, {
+			responsive : true
+		});
+		var ctx7 = document.getElementById("canvas7").getContext("2d");
+		window.myBar = new Chart(ctx7).Bar(barChartData7, {
+			responsive : true
+		});
+		var ctx8 = document.getElementById("canvas8").getContext("2d");
+		window.myBar = new Chart(ctx8).Bar(barChartData8, {
 			responsive : true
 		});
 	}

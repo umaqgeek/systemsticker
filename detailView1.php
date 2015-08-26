@@ -273,7 +273,7 @@ $totalRows_pel = mysql_num_rows($pel);
             <tr>
               <td><strong>Status</strong></td>
               <td><strong>:</strong></td>
-              <td><?php echo ($row_pel['pel_status'] == 1) ? ("Not Approve") : ("Approve"); ?></td>
+              <td><?php echo ($row_pel['pel_status'] == 2) ? ("Approve") : ("Not Approve"); ?></td>
             </tr>
           </table></td>
         </tr>

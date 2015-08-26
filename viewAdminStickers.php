@@ -107,11 +107,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 ?>
 <?php
 mysql_select_db($database_systemsticker_conn, $systemsticker_conn);
-$query_pel = "SELECT * FROM pelekat pel, pengguna pe, jenis_kenderaan jk, model_kenderaan mk 
-WHERE pel.pe_id = pe.pe_id 
-AND pel.jk_id = jk.jk_id 
-AND pel.mk_id = mk.mk_id 
-AND pel.pel_status = 1 ";
+$query_pel = "SELECT * FROM pelekat pel LEFT JOIN pengguna pe ON pel.pe_id = pe.pe_id 
+    LEFT JOIN jenis_kenderaan jk ON pel.jk_id = jk.jk_id 
+    LEFT JOIN model_kenderaan mk ON pel.mk_id = mk.mk_id 
+    WHERE pel.pel_status = 1 ";
 $pe = mysql_query($query_pel, $systemsticker_conn) or die(mysql_error());
 $row_pe = mysql_fetch_assoc($pe);
 $totalRows_pel = mysql_num_rows($pe);
