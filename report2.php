@@ -145,8 +145,8 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
                       <th colspan="2">Total</th>
                   </tr>
                   <tr>
-                      <th>Approved</th>
                       <th>Not Approved</th>
+                      <th>Approved</th>
                   </tr>
                   <?php 
                   $total21 = 0.0;
