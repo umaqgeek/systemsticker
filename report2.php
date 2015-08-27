@@ -107,6 +107,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
                       <th>Total</th>
                   </tr>
                   <?php 
+                  $total1 = 0.0;
                   if ($t1 > 0) { 
                       do { 
                           $ut_id = $d1['ut_id'];
@@ -117,10 +118,14 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
                           $t2 = mysql_num_rows($r2);
                   ?>
                   <tr>
-                      <td><?php echo $d1['ut_desc']; ?></td>
-                      <td><?php echo $t2; ?></td>
+                      <td align="center"><?php echo $d1['ut_desc']; ?></td>
+                      <td align="center"><?php $total1 += $t2; echo $t2; ?></td>
                   </tr>
                   <?php } while ($d1 = mysql_fetch_array($r1)); } ?>
+                  <tr>
+                      <th>Total</th>
+                      <th><?php echo $total1; ?></th>
+                  </tr>
               </table>
               </p>
           </td>
@@ -144,6 +149,8 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
                       <th>Not Approved</th>
                   </tr>
                   <?php 
+                  $total21 = 0.0;
+                  $total22 = 0.0;
                   if ($t1 > 0) { 
                       do { 
                           $ut_id = $d1['ut_id'];
@@ -163,11 +170,16 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
                           $t22 = mysql_num_rows($r22);
                   ?>
                   <tr>
-                      <td><?php echo $d1['ut_desc']; ?></td>
-                      <td><?php echo $t21; ?></td>
-                      <td><?php echo $t22; ?></td>
+                      <td align="center"><?php echo $d1['ut_desc']; ?></td>
+                      <td align="center"><?php $total21 += $t21; echo $t21; ?></td>
+                      <td align="center"><?php $total22 += $t22; echo $t22; ?></td>
                   </tr>
                   <?php } while ($d1 = mysql_fetch_array($r1)); } ?>
+                  <tr>
+                      <th>Total</th>
+                      <th><?php echo $total21; ?></th>
+                      <th><?php echo $total22; ?></th>
+                  </tr>
               </table>
               </p>
           </td>
