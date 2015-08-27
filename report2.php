@@ -1,4 +1,4 @@
-<?php require_once('Connections/systemsticker_conn.php'); ?>
+<!-- InstanceBegin template="/Templates/pageAdmin.dwt.php" codeOutsideHTMLIsLocked="false" --><?php require_once('Connections/systemsticker_conn.php'); ?>
 <?php
 //initialize the session
 if (!isset($_SESSION)) {
@@ -20,7 +20,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
   unset($_SESSION['MM_UserGroup']);
   unset($_SESSION['PrevUrl']);
 	
-  $logoutGoTo = "../index.php";
+  $logoutGoTo = "index.php";
   if ($logoutGoTo) {
     header("Location: $logoutGoTo");
     exit;
@@ -60,7 +60,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
   return $isValid; 
 }
 
-$MM_restrictGoTo = "../index.php?error=2";
+$MM_restrictGoTo = "index.php?error=2";
 if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['MM_Username'], $_SESSION['MM_UserGroup'])))) {   
   $MM_qsChar = "?";
   $MM_referrer = $_SERVER['PHP_SELF'];
@@ -72,8 +72,8 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   exit;
 }
 ?>
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
 <style type="text/css">
 .kepala {
 	color: #999;
@@ -86,14 +86,22 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
     </h1></td>
   </tr>
   <tr>
-    <td align="center" valign="top"><a href="../viewAdminStickers.php">View Stickers &amp; Approval</a> | <a href="../report2.php">Report Total Approval</a> | <a href="../reportAndStatistic.php">Report &amp; Statistic</a> | <a onclick="return confirm('Are you sure want to logout?');" href="<?php echo $logoutAction ?>">Log Out</a></td>
+    <td align="center" valign="top"><a href="viewAdminStickers.php">View Stickers &amp; Approval</a> | <a href="report2.php">Report Total Approval</a> | <a href="reportAndStatistic.php">Report &amp; Statistic</a> | <a onclick="return confirm('Are you sure want to logout?');" href="<?php echo $logoutAction ?>">Log Out</a></td>
   </tr>
   <tr>
-    <td height="400" align="center" valign="top"><!-- TemplateBeginEditable name="content" --> <!-- TemplateEndEditable --></td>
+    <td height="400" align="center" valign="top"><!-- InstanceBeginEditable name="content" -->
+      <table border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td><p>Total Registered by Unit</p>
+          <p>&nbsp;</p></td>
+          <td>Total Approval by Unit</td>
+        </tr>
+      </table>
+    <!-- InstanceEndEditable --></td>
   </tr>
   <tr>
     <td align="center" valign="top"><hr />
       <h3><br>
     Alright Reserved</h3></td>
   </tr>
-</table>
+</table><!-- InstanceEnd -->

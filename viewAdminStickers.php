@@ -128,7 +128,7 @@ $totalRows_pel = mysql_num_rows($pe);
     </h1></td>
   </tr>
   <tr>
-    <td align="center" valign="top"><a href="viewAdminStickers.php">View Stickers &amp; Approval</a> | <a href="reportAndStatistic.php">Report &amp; Statistic</a> | <a onclick="return confirm('Are you sure want to logout?');" href="<?php echo $logoutAction ?>">Log Out</a></td>
+    <td align="center" valign="top"><a href="viewAdminStickers.php">View Stickers &amp; Approval</a> | <a href="report2.php">Report Total Approval</a> | <a href="reportAndStatistic.php">Report &amp; Statistic</a> | <a onclick="return confirm('Are you sure want to logout?');" href="<?php echo $logoutAction ?>">Log Out</a></td>
   </tr>
   <tr>
     <td height="400" align="center" valign="top"><!-- InstanceBeginEditable name="content" -->
