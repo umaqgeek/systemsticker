@@ -92,9 +92,85 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
     <td height="400" align="center" valign="top"><!-- InstanceBeginEditable name="content" -->
       <table border="0" cellspacing="0" cellpadding="5">
         <tr>
-          <td><p>Total Registered by Unit</p>
-          <p>&nbsp;</p></td>
-          <td>Total Approval by Unit</td>
+          <td align="center" valign="top">
+              <h3>Total Registered by Unit</h3>
+              <p>
+                  <?php
+                  $sql = "SELECT * FROM unit_tentera";
+                  $r1 = mysql_query($sql) or die(mysql_error());
+                  $t1 = mysql_num_rows($r1);
+                  $d1 = mysql_fetch_array($r1);
+                  ?>
+              <table border="1" cellpadding="5" cellspacing="0">
+                  <tr>
+                      <th>Unit</th>
+                      <th>Total</th>
+                  </tr>
+                  <?php 
+                  if ($t1 > 0) { 
+                      do { 
+                          $ut_id = $d1['ut_id'];
+                          $sql2 = sprintf("SELECT * "
+                                  . "FROM pengguna pe "
+                                  . "WHERE pe.ut_id = '%s' ", $ut_id);
+                          $r2 = mysql_query($sql2) or die(mysql_error());
+                          $t2 = mysql_num_rows($r2);
+                  ?>
+                  <tr>
+                      <td><?php echo $d1['ut_desc']; ?></td>
+                      <td><?php echo $t2; ?></td>
+                  </tr>
+                  <?php } while ($d1 = mysql_fetch_array($r1)); } ?>
+              </table>
+              </p>
+          </td>
+          <td width="20px">&nbsp;</td>
+          <td align="center" valign="top">
+              <h3>Total Registered by Unit</h3>
+              <p>
+                  <?php
+                  $sql = "SELECT * FROM unit_tentera";
+                  $r1 = mysql_query($sql) or die(mysql_error());
+                  $t1 = mysql_num_rows($r1);
+                  $d1 = mysql_fetch_array($r1);
+                  ?>
+              <table border="1" cellpadding="5" cellspacing="0">
+                  <tr>
+                      <th rowspan="2">Unit</th>
+                      <th colspan="2">Total</th>
+                  </tr>
+                  <tr>
+                      <th>Approved</th>
+                      <th>Not Approved</th>
+                  </tr>
+                  <?php 
+                  if ($t1 > 0) { 
+                      do { 
+                          $ut_id = $d1['ut_id'];
+                          $sql21 = sprintf("SELECT * "
+                                  . "FROM pelekat pel, pengguna pe "
+                                  . "WHERE pel.pe_id = pe.pe_id "
+                                  . "AND pe.ut_id = '%s' "
+                                  . "AND pel.pel_status = 1 ", $ut_id);
+                          $r21 = mysql_query($sql21) or die(mysql_error());
+                          $t21 = mysql_num_rows($r21);
+                          $sql22 = sprintf("SELECT * "
+                                  . "FROM pelekat pel, pengguna pe "
+                                  . "WHERE pel.pe_id = pe.pe_id "
+                                  . "AND pe.ut_id = '%s' "
+                                  . "AND pel.pel_status <> 1 ", $ut_id);
+                          $r22 = mysql_query($sql22) or die(mysql_error());
+                          $t22 = mysql_num_rows($r22);
+                  ?>
+                  <tr>
+                      <td><?php echo $d1['ut_desc']; ?></td>
+                      <td><?php echo $t21; ?></td>
+                      <td><?php echo $t22; ?></td>
+                  </tr>
+                  <?php } while ($d1 = mysql_fetch_array($r1)); } ?>
+              </table>
+              </p>
+          </td>
         </tr>
       </table>
     <!-- InstanceEndEditable --></td>
